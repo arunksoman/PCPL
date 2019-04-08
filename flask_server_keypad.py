@@ -1,19 +1,10 @@
-#from flask import Flask, render_template
 import RPi.GPIO as GPIO
 import time
-import socket                   # Import socket module
-
-port = 60000                    # Reserve a port for your service.
-s = socket.socket()             # Create a socket object
-host = socket.gethostname()     # Get local machine name
-s.bind((host, port))            # Bind to the port
-s.listen(5)                     # Now wait for client connection.
-print ('Server listening....')
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-rows = [17, 25, 24, 23]
-cols = [27, 18, 22,15]
+rows = [8, 10, 11, 12]
+cols = [32, 33, 35,36]
 keys = [
     ['1', '2', '3', 'A'],
     ['4', '5', '6', 'B'],
@@ -41,3 +32,4 @@ while True:
     if key :
         print(key)
     time.sleep(0.3)
+GPIO.cleanup()
